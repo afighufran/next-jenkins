@@ -13,9 +13,13 @@ pipeline {
             }
         }
 
-        //instalasi dependensi
+        //instalasi dependensi menggunakan nodejs 16
         stage('Install Dependencies Next') {
             steps {
+                script {
+                    def nodejs = tool name: 'NodeJS 16', type: 'NodeJSInstallation'
+                    env.PATH = "${nodejs}/bin:${env.PATH}"
+                }
                 sh 'npm install'
             }
         }
